@@ -8,6 +8,8 @@ namespace WinFormsApp1
         public FormConta()
         {
             InitializeComponent();
+            //ativar o botão sacar
+            btnSacar.Enabled = false;
         }
 
         private void btnNovaConta_Click(object sender, EventArgs e)
@@ -23,23 +25,49 @@ namespace WinFormsApp1
 
             listBox1.Items.Add(dadosConta);
 
-     
+
         }
 
         private void btnDepositar_Click(object sender, EventArgs e)
         {
-            conta.Depositar(100);
+            // se a string txt.Valor.Text está nula ou vazia
+            if (string.IsNullOrEmpty(txtValor.Text))
+            {
+                txtValor.Focus();
+                MessageBox.Show("prencha o valor do deposito");
+                return;
+            }
+            //criar uma variavel para obter o valor a ser depositado
+            decimal valorADepositar = decimal.Parse(txtValor.Text);
+
+            //chama o metodo depositar da classe conta
+            conta.Depositar(valorADepositar);
+
+            //monta uma string chamada dados conta com o saldo atualizado
             string dadosConta = " Numero: " + conta.NumeroConta + " Titular: " + conta.Nome + " Saldo: " + conta.Saldo;
 
+            //adiciona um item novo no listBox
             listBox1.Items.Add(dadosConta);
         }
 
         private void btnSacar_Click(object sender, EventArgs e)
         {
-            conta.Sacar(100);
+            decimal valorASacar = decimal.Parse(txtValor.Text);
+            conta.Sacar(valorASacar);
             string dadosConta = " Numero: " + conta.NumeroConta + " Titular: " + conta.Nome + " Saldo: " + conta.Saldo;
 
             listBox1.Items.Add(dadosConta);
+        }
+
+        private void txtValor_Validated(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtValor.Text))
+            {
+                btnSacar.Enabled = true;
+            }
+            else {
+                btnSacar.Enabled = false;
+            }
         }
     }
 }

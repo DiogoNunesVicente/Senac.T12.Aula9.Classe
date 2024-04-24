@@ -30,6 +30,8 @@
         {
             btnNovaConta = new Button();
             groupBox1 = new GroupBox();
+            txtValor = new TextBox();
+            label3 = new Label();
             txtTitularConta = new TextBox();
             txtNumeroConta = new TextBox();
             label2 = new Label();
@@ -46,12 +48,14 @@
             btnNovaConta.Name = "btnNovaConta";
             btnNovaConta.Size = new Size(93, 39);
             btnNovaConta.TabIndex = 0;
-            btnNovaConta.Text = "nova conta";
+            btnNovaConta.Text = "Nova Conta";
             btnNovaConta.UseVisualStyleBackColor = true;
             btnNovaConta.Click += btnNovaConta_Click;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtValor);
+            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtTitularConta);
             groupBox1.Controls.Add(txtNumeroConta);
             groupBox1.Controls.Add(label2);
@@ -62,6 +66,23 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Conta";
+            // 
+            // txtValor
+            // 
+            txtValor.Location = new Point(29, 129);
+            txtValor.Name = "txtValor";
+            txtValor.Size = new Size(100, 23);
+            txtValor.TabIndex = 5;
+            txtValor.Validated += txtValor_Validated;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(27, 111);
+            label3.Name = "label3";
+            label3.Size = new Size(91, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Digite um Valor:";
             // 
             // txtTitularConta
             // 
@@ -116,6 +137,7 @@
             // 
             // btnSacar
             // 
+            btnSacar.Enabled = false;
             btnSacar.Location = new Point(222, 196);
             btnSacar.Name = "btnSacar";
             btnSacar.Size = new Size(97, 39);
@@ -152,5 +174,7 @@
         private ListBox listBox1;
         private Button btnDepositar;
         private Button btnSacar;
+        private TextBox txtValor;
+        private Label label3;
     }
 }
